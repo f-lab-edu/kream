@@ -14,5 +14,6 @@
 ## 사용 기술 및 환경
 
 ## 프로젝트 DB ERD
+![image](https://user-images.githubusercontent.com/23456264/161376525-399c3693-98b7-49f3-8dbc-13a8be275f34.png)
 
-## 서버구조
+# 서버구조
