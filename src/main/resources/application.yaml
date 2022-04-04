@@ -1,0 +1,5 @@
+mybatis:
+  mapper-locations : mybatis-mapper/**/*.xml
+  configuration.map-underscore-to-camel-case : true
+  #type-aliases-package=com.flab.model
+
