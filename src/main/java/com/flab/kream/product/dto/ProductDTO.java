@@ -9,11 +9,13 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductDto {
+public class ProductDTO {
+
+    private int productId;
+
+    private int brandId;
 
     private String name;
-
-    private String brandId;
 
     private String imageUrl;
 
