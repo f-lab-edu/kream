@@ -1,6 +1,6 @@
 package com.flab.kream.product;
 
-import com.flab.kream.product.dto.ProductDto;
+import com.flab.kream.product.dto.ProductDTO;
 import com.flab.kream.product.service.ProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,8 +20,9 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<HttpStatus> registration(@RequestBody ProductDto productDto) {
-//        productService.registrationProduct(productDto);
+    public ResponseEntity<HttpStatus> registration(@RequestBody ProductDTO productDto) {
+
+        productService.registrationProduct(productDto);
 
         return null;
     }

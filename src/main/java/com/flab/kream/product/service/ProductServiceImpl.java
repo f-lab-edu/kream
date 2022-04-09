@@ -1,17 +1,21 @@
 package com.flab.kream.product.service;
 
-import com.flab.kream.product.dto.ProductDto;
-import com.flab.kream.product.service.ProductService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import com.flab.kream.product.dao.ProductDAO;
+import com.flab.kream.product.dto.ProductDTO;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ProductServiceImpl implements ProductService {
 
+    private final ProductDAO productDAO;
+
+    public ProductServiceImpl(ProductDAO productDAO) {
+        this.productDAO = productDAO;
+    }
+
     @Override
-    public ResponseEntity<HttpStatus> registrationProduct(ProductDto productDto) {
-        return null;
+    public void registrationProduct(ProductDTO productDto) {
+        productDAO.registrationProduct(productDto);
     }
 
 }
