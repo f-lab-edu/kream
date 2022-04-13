@@ -8,6 +8,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Spy;
 
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.verify;
+
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
@@ -33,6 +36,7 @@ class ProductServiceTest {
         productService.registrationProduct(productDTO);
 
         //then
+        verify(productDAO).registrationProduct(any(ProductDTO.class));
 
     }
 
