@@ -18,7 +18,7 @@
         )
     </insert>
 
-    <select id="getProductList" resultType="com.flab.kream.product.dto.ProductDTO">
+    <select id="getProductList" parameterType="com.flab.kream.common.model.Pagination" resultType="com.flab.kream.product.dto.ProductDTO">
         SELECT
         P.productId,
         P.name,
