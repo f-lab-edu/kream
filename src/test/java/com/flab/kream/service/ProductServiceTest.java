@@ -40,11 +40,7 @@ class ProductServiceTest {
     void registrationProductTest() {
 
         //given
-        ProductDTO productDTO = new ProductDTO();
-        productDTO.setProductId(000);
-        productDTO.setPrice("2000000");
-        productDTO.setBrandId(000);
-        productDTO.setImageUrl("test");
+        ProductDTO productDTO = createProduct(1);
 
         //when
         productService.registrationProduct(productDTO);
