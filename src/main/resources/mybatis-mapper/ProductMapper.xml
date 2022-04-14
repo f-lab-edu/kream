@@ -6,9 +6,9 @@
         INSERT INTO
         product
         (
-        brand_id,
+        brandId,
         name,
-        image_url
+        imageUrl
         )
         VALUES
         (
