@@ -5,13 +5,13 @@ import lombok.Value;
 @Value
 public class Pagination {
 
-    long cursorUserNo;
+    long cursor;
 
     int size;
 
-    public static Pagination paging(long cursorUserNo, int size) {
+    public static Pagination paging(long cursor, int size) {
 
-        return new Pagination(cursorUserNo, size);
+        return new Pagination(cursor, size);
     }
 
 }
