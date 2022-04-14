@@ -1,5 +1,6 @@
 package com.flab.kream.service;
 
+import com.flab.kream.common.model.Pagination;
 import com.flab.kream.product.dao.ProductDAO;
 import com.flab.kream.product.dto.ProductDTO;
 import com.flab.kream.product.service.ProductService;
@@ -8,7 +9,10 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Spy;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.verify;
 
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -53,12 +57,19 @@ class ProductServiceTest {
     @Test
     void findProductListTest() {
         //given
-        List<ProductDTO> prductList = new ArrayList<>();
+        List<ProductDTO> productList = new ArrayList<>();
+        productList.add(createProduct(1));
+        productList.add(createProduct(2));
 
+        Pagination pagination = new Pagination(1,10);
+
+        when(productDAO.getProductList(any(Pagination.class))).thenReturn(productList);
 
         //when
+        List<ProductDTO> resultProductList = productService.findProductList(pagination);
 
         //then
+        assertEquals(productList, resultProductList);
     }
 
 }
