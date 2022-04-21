@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.flab.kream.order.dao.OrderDao">
+    <insert id="addOrder" parameterType="">
+        INSERT INTO PRODUCT_ORDER
+            (MEMBER_ID, PRODUCT_ID, FIELD, CREATED_DATE,CREATED_BY,UPDATED_DATE,UPDATED_BY)
+        VALUES(#{memberId},#{productId},#{quantity},now(),#{createdBy},now(),#{updatedBy})
+    </insert>
+</mapper>
+
+
+
