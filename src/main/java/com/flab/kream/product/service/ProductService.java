@@ -11,7 +11,7 @@ public class ProductService {
 
     private final ProductDAO productDAO;
 
-    public void registrationProduct(ProductDTO productDto) {
+    public void registProduct(ProductDTO productDto) {
         productDAO.registrationProduct(productDto);
     }
 
