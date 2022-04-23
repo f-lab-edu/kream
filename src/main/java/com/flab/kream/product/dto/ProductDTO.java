@@ -1,24 +1,27 @@
 package com.flab.kream.product.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
-@Builder
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+
+@Getter
+@Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class ProductDTO {
 
-    private int productId;
+    private Integer productId;
 
-    private int brandId;
+    @NotBlank
+    private Integer brandId;
 
+    @NotBlank
     private String name;
 
+    @NotBlank
     private String imageUrl;
 
+    @Min(value = 0, message = "정확한 가격을 입력해주세요")
     private String price;
 
 }
