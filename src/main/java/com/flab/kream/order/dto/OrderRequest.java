@@ -8,6 +8,5 @@ public class OrderRequest {
     private int productId;
     private int quantity;
     private String createdBy;
-    private String updatedBy;
 
 }

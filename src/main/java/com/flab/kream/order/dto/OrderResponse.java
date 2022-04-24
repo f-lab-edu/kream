@@ -9,6 +9,5 @@ public class OrderResponse {
     private int productId;
     private int quantity;
     private String createdBy;
-    private String updatedBy;
 
 }
