@@ -1,10 +1,9 @@
 package com.flab.kream.product;
 
-import com.flab.kream.product.dto.ProductDTO;
+import com.flab.kream.product.dto.ProductRequestDTO;
 import com.flab.kream.product.service.ProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,9 +22,9 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<HttpStatus> registration(@Valid @RequestBody ProductDTO productDto) {
+    public ResponseEntity<HttpStatus> registration(@Valid @RequestBody ProductRequestDTO requestDTO) {
 
-        productService.registProduct(productDto);
+        productService.registProduct(requestDTO);
 
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

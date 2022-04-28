@@ -8,7 +8,7 @@ import javax.validation.constraints.NotBlank;
 @Getter
 @Setter
 @NoArgsConstructor
-public class ProductDTO {
+public class ProductRequestDTO {
 
     private Integer productId;
 

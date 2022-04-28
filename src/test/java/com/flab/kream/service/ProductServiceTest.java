@@ -1,7 +1,7 @@
 package com.flab.kream.service;
 
-import com.flab.kream.product.dao.ProductDAO;
-import com.flab.kream.product.dto.ProductDTO;
+import com.flab.kream.product.dao.ProductMapper;
+import com.flab.kream.product.dto.ProductRequestDTO;
 import com.flab.kream.product.service.ProductService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,14 +21,14 @@ class ProductServiceTest {
     private ProductService productService;
 
     @Spy
-    private ProductDAO productDAO;
+    private ProductMapper productMapper;
 
     @Test
-    @DisplayName("")
+    @DisplayName("상품등록테스트")
     void registProductTest() {
 
         //given
-        ProductDTO productDTO = new ProductDTO();
+        ProductRequestDTO productDTO = new ProductRequestDTO();
         productDTO.setProductId(000);
         productDTO.setPrice("2000000");
         productDTO.setBrandId(000);
@@ -38,7 +38,7 @@ class ProductServiceTest {
         productService.registProduct(productDTO);
 
         //then
-        verify(productDAO).registrationProduct(any(ProductDTO.class));
+        verify(productMapper).insertProduct(any(ProductRequestDTO.class));
 
     }
 
@@ -47,7 +47,7 @@ class ProductServiceTest {
     void registProductParameterTest() {
 
         //given
-        ProductDTO productDTO = new ProductDTO();
+        ProductRequestDTO productDTO = new ProductRequestDTO();
         productDTO.setProductId(null);
         productDTO.setBrandId(null);
         productDTO.setImageUrl(null);
