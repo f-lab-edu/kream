@@ -9,19 +9,13 @@ import javax.validation.constraints.NotBlank;
 @Setter
 @NoArgsConstructor
 public class ProductRequestDTO {
-
-    private Integer productId;
-
+    private long productId;
     @NotBlank
-    private Integer brandId;
-
+    private long brandId;
     @NotBlank
     private String name;
-
     @NotBlank
     private String imageUrl;
-
     @Min(value = 0, message = "정확한 가격을 입력해주세요")
     private String price;
-
 }
