@@ -1,6 +1,6 @@
 package com.flab.kream.product.service;
 
-import com.flab.kream.product.dao.ProductDAO;
+import com.flab.kream.product.dao.ProductMapper;
 import com.flab.kream.product.dto.ProductRequestDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -9,10 +9,10 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class ProductService {
 
-    private final ProductDAO productDAO;
+    private final ProductMapper productMapper;
 
     public void registProduct(ProductRequestDTO requestDTO) {
-        productDAO.registrationProduct(requestDTO);
+        productMapper.insertProduct(requestDTO);
     }
 
 }

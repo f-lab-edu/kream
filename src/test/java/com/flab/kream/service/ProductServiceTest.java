@@ -67,8 +67,8 @@ class ProductServiceTest {
 
         //given
         ProductRequestDTO productDTO = new ProductRequestDTO();
-        productDTO.setProductId(null);
-        productDTO.setBrandId(null);
+        productDTO.setProductId(0);
+        productDTO.setBrandId(0);
         productDTO.setImageUrl(null);
 
         //when
