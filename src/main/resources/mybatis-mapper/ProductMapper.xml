@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.flab.kream.product.dao.ProductDAO">
+
+    <insert id="insertProduct" parameterType="com.flab.kream.product.dto.ProductRequestDTO">
+        INSERT INTO
+        product
+        (
+        brandId,
+        name,
+        imageUrl
+        )
+        VALUES
+        (
+        #{brand_id},
+        #{name},
+        #{image_url}
+        )
+    </insert>
+
+</mapper>
+
+
