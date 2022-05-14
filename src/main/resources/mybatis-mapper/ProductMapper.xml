@@ -18,6 +18,23 @@
         )
     </insert>
 
+    <select id="getProductList" parameterType="com.flab.kream.common.model.Pagination" resultType="com.flab.kream.product.dto.ProductDTO">
+        SELECT
+        P.productId,
+        P.name,
+        P.imageUrl,
+        P.eventTitle,
+        PB.name
+        FROM product P
+        LEFT JOIN product_brand PB
+        ON P.brandId = PB.brandId
+        LEFT JOIN product_detail PD
+        ON P.productId = PD.productId
+        WHERE P.productId <![CDATA[<]]> #{pagination.cursor}
+        ORDER BY P.productId DESC
+        LIMIT #{pageInfo.size}
+    </select>
+
 </mapper>
 
 
