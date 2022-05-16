@@ -1,0 +1,38 @@
+package com.flab.kream.order.controller;
+
+import com.flab.kream.order.dto.OrderRequestDTO;
+import com.flab.kream.order.dto.OrderResponseDTO;
+import com.flab.kream.order.service.OrderService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/order")
+@RequiredArgsConstructor
+public class OrderController {
+
+    private final OrderService orderService;
+
+    private final OrderResponseDTO orderResponse;
+
+    @PostMapping
+    public ResponseEntity<OrderResponseDTO> addOrder(@Validated @RequestBody OrderRequestDTO orderRequest) {
+        orderService.addOrder(orderRequest);
+        return new ResponseEntity<OrderResponseDTO>(HttpStatus.CREATED);
+    }
+
+    @GetMapping("/selectOrder")
+    public ResponseEntity<OrderResponseDTO> selectOrder(@Validated @RequestBody OrderRequestDTO orderRequest) {
+        OrderResponseDTO response = orderService.selectOrder(orderRequest);
+
+        if (response == null) {
+            return new ResponseEntity<OrderResponseDTO>(HttpStatus.BAD_REQUEST);
+        } else {
+            return new ResponseEntity<OrderResponseDTO>(response, HttpStatus.OK);
+        }
+    }
+
+}

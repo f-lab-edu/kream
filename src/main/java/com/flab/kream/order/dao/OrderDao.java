@@ -1,12 +1,13 @@
 package com.flab.kream.order.dao;
 
-import com.flab.kream.order.dto.OrderRequest;
-import com.flab.kream.order.dto.OrderResponse;
+import com.flab.kream.order.dto.OrderRequestDTO;
+import com.flab.kream.order.dto.OrderResponseDTO;
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Repository;
 
 @Mapper
 public interface OrderDao {
-    public OrderResponse addOrder(OrderRequest orderRequest);
-    public OrderResponse selectOrder(OrderRequest orderRequest);
+    void addOrder(OrderRequestDTO orderRequest);
+
+    OrderResponseDTO selectOrder(OrderRequestDTO orderRequest);
+
 }
