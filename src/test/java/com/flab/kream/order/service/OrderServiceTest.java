@@ -17,7 +17,9 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import java.util.Set;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
@@ -74,6 +76,22 @@ public class OrderServiceTest {
         verify(orderDao).addOrder(any(OrderRequestDTO.class));
     }
 
+    @Test
+    @DisplayName("주문 실패 테스트")
+    public void insertFailTest() {
+        //given
+        orderRequest = orderRequest.builder().memberId(1).productId(1).quantity(1).createdBy("ADMIN").build();
+
+        //when
+        doThrow(IllegalArgumentException.class).when(orderDao).addOrder(any(OrderRequestDTO.class));
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                () -> orderService.addOrder(orderRequest));
+
+        //then
+        verify(orderDao).addOrder(any(OrderRequestDTO.class));
+
+
+    }
 
     @Test
     @DisplayName("createdBy 유효성 검사")
@@ -90,7 +108,7 @@ public class OrderServiceTest {
     @Test
     @DisplayName("memberId 유효성 검사")
     public void memberIdValid() {
-        orderRequest = orderRequest.builder().memberId(0).productId(1).quantity(1).createdBy("ADMIN").build();
+        orderRequest = orderRequest.builder().memberId(-1).productId(1).quantity(1).createdBy("ADMIN").build();
 
         Set<ConstraintViolation<OrderRequestDTO>> violations = validator.validate(orderRequest);
 
@@ -100,7 +118,7 @@ public class OrderServiceTest {
     @Test
     @DisplayName("productId 유효성 검사")
     public void productIdValid() {
-        orderRequest = orderRequest.builder().memberId(1).productId(0).quantity(1).createdBy("ADMIN").build();
+        orderRequest = orderRequest.builder().memberId(1).productId(-1).quantity(1).createdBy("ADMIN").build();
 
         Set<ConstraintViolation<OrderRequestDTO>> violations = validator.validate(orderRequest);
 
@@ -110,11 +128,12 @@ public class OrderServiceTest {
     @Test
     @DisplayName("quantity 유효성 검사")
     public void quantityValid() {
-        orderRequest = orderRequest.builder().memberId(1).productId(1).quantity(0).createdBy("ADMIN").build();
+        orderRequest = orderRequest.builder().memberId(1).productId(1).quantity(-1).createdBy("ADMIN").build();
 
         Set<ConstraintViolation<OrderRequestDTO>> violations = validator.validate(orderRequest);
 
         assertEquals(violations.size(), 1);
+
     }
 
 

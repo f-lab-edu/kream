@@ -10,15 +10,15 @@ import javax.validation.constraints.NotBlank;
 @Builder
 public class OrderRequestDTO {
 
-    @Min(value = 1, message = "memberId must not be zero")
+    @Min(value = 0, message = "멤버 아이디를 입력해주세요")
     private long memberId;
 
-    @Min(value = 1, message = "productId must not be zero")
+    @Min(value = 0, message = "상품아이디를 입력해주세요")
     private long productId;
 
-    @Min(value = 1, message = "quantity must not be zero")
+    @Min(value = 0, message = "수량을 입력해주세요")
     private int quantity;
 
-    @NotBlank(message = "createdBy must not be null")
+    @NotBlank(message = "등록자를 입력해주세요")
     private String createdBy;
 }
