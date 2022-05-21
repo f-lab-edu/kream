@@ -16,8 +16,6 @@ public class OrderController {
 
     private final OrderService orderService;
 
-    private final OrderResponseDTO orderResponse;
-
     @PostMapping
     public ResponseEntity<OrderResponseDTO> addOrder(@Validated @RequestBody OrderRequestDTO orderRequest) {
         orderService.addOrder(orderRequest);
@@ -27,12 +25,6 @@ public class OrderController {
     @GetMapping("/selectOrder")
     public ResponseEntity<OrderResponseDTO> selectOrder(@Validated @RequestBody OrderRequestDTO orderRequest) {
         OrderResponseDTO response = orderService.selectOrder(orderRequest);
-
-        if (response == null) {
-            return new ResponseEntity<OrderResponseDTO>(HttpStatus.BAD_REQUEST);
-        } else {
-            return new ResponseEntity<OrderResponseDTO>(response, HttpStatus.OK);
-        }
+        return new ResponseEntity<OrderResponseDTO>(response, HttpStatus.OK);
     }
-
 }

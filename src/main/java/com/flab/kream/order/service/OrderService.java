@@ -1,6 +1,6 @@
 package com.flab.kream.order.service;
 
-import com.flab.kream.order.dao.OrderDao;
+import com.flab.kream.order.mapper.OrderMapper;
 import com.flab.kream.order.dto.OrderRequestDTO;
 import com.flab.kream.order.dto.OrderResponseDTO;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class OrderService {
 
-    private final OrderDao orderDao;
+    private final OrderMapper orderDao;
 
     @Transactional
     public void addOrder(OrderRequestDTO orderRequest) {
@@ -22,8 +22,5 @@ public class OrderService {
     @Transactional(readOnly = true)
     public OrderResponseDTO selectOrder(OrderRequestDTO orderRequest) {
         return orderDao.selectOrder(orderRequest);
-
     }
-
-
 }
