@@ -1,13 +1,10 @@
 package com.flab.kream.exception;
 
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 @Getter
 public class CustomException extends RuntimeException {
-
-    ErrorCode errorCode;
-
-    public CustomException(ErrorCode errorCode) {
-        this.errorCode = errorCode;
-    }
+    private final ErrorCode errorCode;
 }
