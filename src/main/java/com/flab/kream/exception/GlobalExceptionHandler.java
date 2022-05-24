@@ -16,27 +16,25 @@ import java.util.Map;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    //실제로 사용하지 않는 ExceptionHandler예시입니다 
-    @ExceptionHandler(RuntimeException.class)
-    public ErrorCode handleDuplicateIdException(RuntimeException e) {
-        //
-        return ErrorCode.BUSINESS_EXCEPTION;
+    //비즈니스로직 error처리
+    @ExceptionHandler(CustomException.class)
+    public ResponseEntity<CustomExceptionResponseDto> customException(CustomException customException) {
+        CustomExceptionResponseDto customExceptionResponseDto = new CustomExceptionResponseDto();
+        customExceptionResponseDto.setErrorCode(customException.getErrorCode().getStatus());
+        customExceptionResponseDto.setErrorMsg(customException.getErrorCode().getMessage());
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(customExceptionResponseDto);
     }
 
+    //@Valid error처리
     @ExceptionHandler({MethodArgumentNotValidException.class})
     public ResponseEntity<String> validException(MethodArgumentNotValidException ex) {
-
         Map<String, String> errors = new HashMap<>();
-
         ex.getBindingResult().getAllErrors().forEach((error) -> {
             String fieldName = ((FieldError) error).getField();
             String errorMessage = error.getDefaultMessage();
             errors.put(fieldName, errorMessage);
         });
-
         return new ResponseEntity<String>(errors.toString(), HttpStatus.BAD_REQUEST);
     }
-
-
 
 }
