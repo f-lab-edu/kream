@@ -1,26 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.flab.kream.order.dao.OrderDao">
+<mapper namespace="com.flab.kream.order.mapper.OrderMapper">
     <insert id="addOrder" parameterType="com.flab.kream.order.dto.OrderRequestDTO">
-        INSERT INTO PRODUCT_ORDER
+        INSERT INTO product_order
             (MEMBER_ID, PRODUCT_ID, QUANTITY, CREATED_DATE, CREATED_BY)
         VALUES (#{memberId}, #{productId}, #{quantity}, now(), #{createdBy})
     </insert>
-
-    <select id="selectOrder" parameterType="com.flab.kream.order.dto.OrderRequestDTO"
-            resultType="com.flab.kream.order.dto.OrderResponseDTO">
-        SELECT order_id   AS orderId,
-               member_id  AS memberId,
-               product_id AS productId,
-               quantity   AS quantity,
-               created_by AS createdBy
-        FROM product_order
-        WHERE MEMBER_ID = #{memberId}
-    </select>
-
 </mapper>
-
-
-
-
-

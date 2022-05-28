@@ -21,10 +21,4 @@ public class OrderController {
         orderService.addOrder(orderRequest);
         return new ResponseEntity<OrderResponseDTO>(HttpStatus.CREATED);
     }
-
-    @GetMapping("/selectOrder")
-    public ResponseEntity<OrderResponseDTO> selectOrder(@Validated @RequestBody OrderRequestDTO orderRequest) {
-        OrderResponseDTO response = orderService.selectOrder(orderRequest);
-        return new ResponseEntity<OrderResponseDTO>(response, HttpStatus.OK);
-    }
 }

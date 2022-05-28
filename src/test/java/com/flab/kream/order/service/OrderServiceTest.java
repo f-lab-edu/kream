@@ -47,18 +47,7 @@ public class OrderServiceTest {
     public void setupValidator() {
         validator = Validation.buildDefaultValidatorFactory().getValidator();
     }
-
-    @Test
-    @DisplayName("주문 조회테스트")
-    public void selectTest() {
-        //given
-        when(orderDao.selectOrder(any(OrderRequestDTO.class))).thenReturn(any(OrderResponseDTO.class));
-        //when
-        orderService.selectOrder(orderRequest);
-        //then
-        verify(orderDao).selectOrder(any(OrderRequestDTO.class));
-    }
-
+    
     @Test
     @DisplayName("주문 추가 테스트")
     public void insertTest() {
