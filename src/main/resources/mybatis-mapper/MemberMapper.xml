@@ -7,10 +7,18 @@
         FROM member
         WHERE MEMBER_ID = #{member_id}
     </select>
-
-<mapper namespace="com.flab.kream.product.dao.ProductDAO">
-
-
+    <select id="selectMemberEmail" resultType="int">
+        SELECT COUNT(*)
+        FROM member
+        WHERE EMAIL = #{email}
+    </select>
+    <insert id="addMember" parameterType="com.flab.kream.member.dto.MemberRequestDTO">
+        INSERT INTO member
+            (EMAIL, PASSWORD, NICKNAME,GENDER, BIRTH_DAY,IMAGE_URL)
+        VALUES (#{email}, #{password}, #{nickName}, #{gender} ,#{birth}, #{imageUrl})
+    </insert>
 </mapper>
+
+
 
 
