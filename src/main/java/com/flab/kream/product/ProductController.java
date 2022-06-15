@@ -16,14 +16,11 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/product")
 public class ProductController {
-
     private final ProductService productService;
-
 
     @PostMapping
     public ResponseEntity<HttpStatus> registration(@Valid @RequestBody ProductRequestDTO requestDTO) {
         productService.registProduct(requestDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
-
 }
