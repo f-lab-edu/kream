@@ -12,10 +12,9 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class ProductService {
-
     private final ProductMapper productMapper;
 
-    @Transactional(rollbackFor = Exception.class)
+    @Transactional
     public void registProduct(ProductRequestDTO requestDTO) {
         productMapper.insertProduct(requestDTO);
     }
@@ -24,5 +23,4 @@ public class ProductService {
     public List<ProductRequestDTO> findProductList(Pagination pagination) {
         return productMapper.getProductList(pagination);
     }
-
 }
