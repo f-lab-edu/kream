@@ -2,6 +2,7 @@ package com.flab.kream.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.flab.kream.common.model.Pagination;
 import com.flab.kream.product.dao.ProductMapper;
 import com.flab.kream.product.dto.ProductRequestDTO;
 import com.flab.kream.product.service.ProductService;
@@ -20,8 +21,11 @@ import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(SpringExtension.class)
@@ -40,6 +44,17 @@ class ProductServiceTest {
     public static void init(){
         factory = Validation.buildDefaultValidatorFactory();
         validator = factory.getValidator();
+    }
+
+    private ProductRequestDTO createProduct(int productId) {
+        ProductRequestDTO productDTO = new ProductRequestDTO();
+        productDTO.setProductId(productId);
+        BigDecimal price = new BigDecimal(1000000);
+        productDTO.setPrice(price);
+        productDTO.setBrandId(1);
+        productDTO.setImageUrl("test");
+
+        return productDTO;
     }
 
     @Test
@@ -140,6 +155,25 @@ class ProductServiceTest {
         validate.forEach(error -> {
             assertThat(error.getMessage()).isEqualTo("정확한 가격을 입력해주세요");
         });
+    }
+
+    @Test
+    @DisplayName("상품 전체조회 테스트 - 성공")
+    void findProductListTest() {
+        //given
+        List<ProductRequestDTO> productList = new ArrayList<>();
+        productList.add(createProduct(1));
+        productList.add(createProduct(2));
+
+        Pagination pagination = new Pagination(1,10);
+
+        when(productMapper.getProductList(any(Pagination.class))).thenReturn(productList);
+
+        //when
+        List<ProductRequestDTO> resultProductList = productService.findProductList(pagination);
+
+        //then
+        assertEquals(productList, resultProductList);
     }
 
 }
